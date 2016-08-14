@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Query;
 use yii\web\UploadedFile;
 
 /**
@@ -99,4 +100,21 @@ class Posts extends \yii\db\ActiveRecord
 
         return parent::beforeSave($insert);
     }
+
+
+    public function checkPost($id)
+    {
+
+        $owner = self::findAll([
+            'user_id' => Yii::$app->user->id,
+            'id' => $id
+        ]);
+        if(empty($owner))
+        {
+            return false;
+        }
+        return true;
+    }
+
+
 }

@@ -18,8 +18,13 @@ class HomeController extends BehaviorsController
     {
         $query = Posts::find();
 
+
+
+
+//        $query->select([''])
+
         $pagination = new Pagination([
-            'defaultPageSize' => 5,
+            'defaultPageSize' => 4,
             'totalCount' => $query->count(),
         ]);
 
@@ -27,6 +32,7 @@ class HomeController extends BehaviorsController
             ->offset($pagination->offset)
             ->limit($pagination->limit)
             ->all();
+
 
         return $this->render('index',[
             'posts' => $posts,

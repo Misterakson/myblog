@@ -18,6 +18,11 @@ $config = [
 //        ],
 //    ],
     'defaultRoute' => 'home/index',
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\Behavior',
+        ],
+    ],
     'components' => [
         'authManager' => [
           'class' => 'yii\rbac\DbManager',

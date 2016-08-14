@@ -57,8 +57,8 @@ AppAsset::register($this);
             'url' => ['/home/profile']
         ];
         $menuItems[] = [
-            'label' => 'Создать публикацию',
-            'url'  => ['/post/create']
+            'label' => 'Мои публикации',
+            'url'  => ['/post/index']
         ];
         $menuItems[] = [
             'label' => "Выйти (".Yii::$app->user->identity['name'].")",

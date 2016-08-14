@@ -1,31 +1,38 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\LinkPager;
+use yii\grid\GridView;
 
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\PostSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'Posts';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-    <h1>Все посты</h1>
+<div class="posts-index">
 
-    <ul>
+    <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
+    <p>
+        <?= Html::a('Create Posts', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
 
-        <?php foreach ($posts as $post) : ?>
-            <li>
-                <?= Html::encode("{$post->title}") ?>
-            </li>
-            <li>
-                <?= $post->image ?>
-            </li>
-            <li>
-                <?= Html::encode("{$post->description}") ?>
-            </li>
-            <li>
-                <?= Html::encode("{$post->date}") ?>
-<!--                <p> <a href="/yii2/web/home/post?id=--><?//=$post->id?><!--">Подробнее</a> </p>-->
-            </li>
-            <hr>
-        <?php endforeach; ?>
+            'id',
+            'title',
+            'description',
+            'text:ntext',
+            'date',
+            // 'user_id',
+            // 'image:ntext',
 
-    </ul>
-
-<?= LinkPager::widget(['pagination' => $pagination]); ?>
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+</div>

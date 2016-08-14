@@ -1,29 +1,21 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+
 
 /* @var $this yii\web\View */
 /* @var $model app\models\posts */
-/* @var $form ActiveForm */
+
+$this->title = 'Create Posts';
+$this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="post-create">
+<div class="posts-create">
 
-    <?php $form = ActiveForm::begin([
-        'options' => [
-            'enctype' => 'multipart/form-data'
-        ]
-    ]); ?>
+    <h1><?= Html::encode($this->title) ?></h1>
 
-        <?= $form->field($model, 'title') ?>
-        <?= $form->field($model, 'description')->textarea() ?>
-        <?= $form->field($model, 'text')->textarea() ?>
-        <?= $form->field($model, 'image')->fileInput(); ?>
+    <?= $this->render('_form', [
+        'model' => $model,
+    ]) ?>
 
-
-        <div class="form-group">
-            <?= Html::submitButton('Submit', ['class' => 'btn btn-default']) ?>
-        </div>
-    <?php ActiveForm::end(); ?>
-
-</div><!-- post-create -->
+</div>
